@@ -1,0 +1,621 @@
+% Theme for The University of Bergen
+% Implemented by Martin Helsø (martibhe@math.uio.no)
+% Version 30-08-2018
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\RequirePackage{calc}
+\RequirePackage{etoolbox}
+\RequirePackage[LGR, T1]{fontenc}
+\RequirePackage[utf8]{inputenx}
+\RequirePackage{thmtools}
+\RequirePackage{tikz}
+\hypersetup{colorlinks,
+            urlcolor  = uiblink,
+            linkcolor =,
+            citecolor =}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%% Standard headers:
+\DeclareOptionBeamer{american}
+{
+    \def \UiBlang {eng}
+    \def \UiBlangII {american}
+}
+\DeclareOptionBeamer{english}
+{
+    \def \UiBlang {eng}
+    \def \UiBlangII {english}
+}
+\DeclareOptionBeamer{UKenglish}
+{
+    \def \UiBlangII {english}\def \UiBlang {eng}
+    \def \UiBlangII {UKenglish}
+}
+\DeclareOptionBeamer{USenglish}
+{
+    \def \UiBlang {eng}
+    \def \UiBlangII {USenglish}
+}
+\DeclareOptionBeamer{norsk}
+{
+    \def \UiBlang {bm}
+    \def \UiBlangII {norsk}
+    \pretolerance = 2000
+    \tolerance    = 6000
+    \hbadness     = 6000
+}
+\DeclareOptionBeamer{nynorsk}
+{
+    \def \UiBlang {nn}
+    \def \UiBlangII {nynorsk}
+    \pretolerance = 2000
+    \tolerance    = 6000
+    \hbadness     = 6000
+}
+\urlstyle{same}
+
+%% Vertical text alignment:
+\DeclareOptionBeamer{c}{ \beamer@centeredtrue  }
+\DeclareOptionBeamer{t}{ \beamer@centeredfalse }
+
+
+%% Theorem numbers:
+\DeclareOptionBeamer{unnumbered}{ \def \UiBtheorem {}          }
+\DeclareOptionBeamer{numbered}  { \def \UiBtheorem {numbered}  }
+\DeclareOptionBeamer{AMS}       { \def \UiBtheorem {ams style} }
+
+
+%% Font:
+\providebool{neohellenic}
+\providebool{latinmodern}
+\DeclareOptionBeamer{SansSerif}
+{
+    \def \UiBfont {default}
+    \setbool{neohellenic}{true}
+    \setbool{latinmodern}{false}
+}
+\DeclareOptionBeamer{UiBSerif}
+{
+    \def \UiBfont {professionalfonts}
+    \setbool{neohellenic}{false}
+    \setbool{latinmodern}{false}
+}
+\DeclareOptionBeamer{Serif}
+{
+    \def \UiBfont {serif}
+    \setbool{neohellenic}{false}
+    \setbool{latinmodern}{true}
+}
+
+
+%% Automatic title frame:
+\DeclareOptionBeamer{TitlePage} { \def \UiBfirstframe {\TitlePage}  }
+\DeclareOptionBeamer{NoTitlePage} { \def \UiBfirstframe {} }
+
+
+\ExecuteOptionsBeamer{english}
+\ExecuteOptionsBeamer{t}
+\ExecuteOptionsBeamer{unnumbered}
+\ExecuteOptionsBeamer{SansSerif}
+\ExecuteOptionsBeamer{TitlePage}
+\ProcessOptionsBeamer
+
+
+\AtBeginDocument{ \UiBfirstframe }
+
+
+\RequirePackage[\UiBlangII]{babel}
+
+
+% Use a neohellenic font from the Greek Font Society
+% for small, greek letters. It is a sans serif that
+% matches Helvetica better in style and weight than
+% the standard Computer Modern.
+\ifbool{neohellenic}
+{
+    \RequirePackage[default]{gfsneohellenic}
+}
+{}
+
+\ifbool{latinmodern}
+{
+    \renewcommand{\rmdefault}{lmr} % Latin Modern Roman
+}
+{
+   \renewcommand{\rmdefault}{pbk}  % Bookman
+}
+
+\renewcommand{\sfdefault}{phv} % Helvetica
+\renewcommand{\ttdefault}{pcr} % Courier
+
+
+%% Allow more stretching
+\setlength{\emergencystretch}{3em}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%% Official colours:
+\definecolor{uibred}  {HTML}{db3f3d}
+\definecolor{uibblue} {HTML}{4ea0b7}
+\definecolor{uibgreen}{HTML}{789a5b}
+\definecolor{uibgray} {HTML}{d0cac2}
+\definecolor{uiblink} {HTML}{00769E}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\mode<presentation>
+
+
+\useinnertheme{rectangles}
+\usefonttheme{\UiBfont}
+
+
+\setbeamertemplate{theorems}[\UiBtheorem]
+\setbeamertemplate{qed symbol}{\(\blacksquare\)}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{caption label separator}{: }
+\setbeamersize{text margin left  = 3.845mm,
+               text margin right = 3.845mm}
+
+
+%% Standard colours:
+\setbeamercolor{structure}{fg = uibred}
+\setbeamercolor{block title}{fg = white,
+                             bg = uibred}
+\setbeamercolor{block body} {bg = uibgray}
+\setbeamercolor{block title example}{fg = white,
+                                     bg = uibgreen}
+\setbeamercolor{block body example} {bg = uibgray}
+\setbeamercolor{block title alerted}{fg = white,
+                                     bg = uibblue}
+\setbeamercolor{block body alerted} {bg = uibgray}
+\setbeamercolor{alerted text} {fg = uibblue}
+\setbeamercolor{footnote mark}{fg = uiored}
+\setbeamercolor{section in head/foot}{fg = white,
+                                      bg = uibred}
+\setbeamercolor{section in toc}{fg = black}
+\setbeamercolor{bibliography entry location}{fg = structure}
+
+
+%% Custom colours:
+\setbeamercolor{author in final frame}  {fg = white}
+\setbeamercolor{title in final frame}   {fg = white}
+\setbeamercolor{subtitle in final frame}{fg = white}
+
+
+%% Standard fonts:
+\setbeamerfont{author}    {size   = \huge,
+                           series = \normalfont\bfseries}
+\setbeamerfont{title}     {size   = \huge,
+                           series = \bfseries}
+\setbeamerfont{subtitle}  {size   = \LARGE,
+                           series = \normalfont\rmfamily}
+\setbeamerfont{frametitle}{size = \LARGE,
+                           series = \bfseries}
+\setbeamerfont{title in head/foot} {series = \bfseries}
+\setbeamerfont{author in head/foot}{series = \bfseries}
+\setbeamerfont{date in head/foot}  {series = \bfseries}
+\setbeamerfont{section in toc}     {series = \bfseries}
+
+
+%% Custom fonts:
+\setbeamerfont{author in final frame}  {size   = \LARGE,
+                                        series = \bfseries}
+\setbeamerfont{title in final frame}   {size   = \LARGE,
+                                        series = \bfseries}
+\setbeamerfont{subtitle in final frame}{  size = \Large,
+                                        series = \normalfont\rmfamily}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\setbeamertemplate{title page}
+{
+    \begin{center}
+        \usebeamerfont{title}
+        \inserttitle
+        \\
+        \usebeamerfont{subtitle}
+        \insertsubtitle
+    \end{center}
+    \begin{beamercolorbox}[wd        = \paperwidth,
+                           ht        = 11 mm,
+                           dp        = \dimexpr 0.4\paperheight - 11 mm \relax,
+                           leftskip  = 1 em,
+                           rightskip = 1 em]
+                          {section in head/foot}
+        \begin{minipage}[t][0.28\paperheight]{\textwidth}
+            \centering
+            \usebeamerfont{author}
+            \insertauthor
+            \vfill
+            \hfill
+            \includegraphics[scale = 0.4]{UiB-images/UiB-logo-\UiBlang}
+        \end{minipage}
+    \end{beamercolorbox}
+    \vspace*{-1.3em}
+}
+
+
+\newcommand{\TitlePage}
+{{
+    \setbeamercolor{background canvas}{bg = uibgray}
+    \begin{frame}[b, plain, noframenumbering]
+        \titlepage
+    \end{frame}
+}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\setbeamertemplate{frametitle}
+{
+    \vbox
+    {
+        \strut\insertframetitle\strut
+    }
+    \vskip-1.3ex
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\setbeamertemplate{headline}{ \vspace*{1.7 mm} }
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\setbeamertemplate{footline}
+{
+    \hbox to \paperwidth
+    {%
+        \begin{beamercolorbox}[wd = 0.33\paperwidth,
+                               ht = 2.25ex,
+                               dp = 1ex]
+                              {section in head/foot}
+
+                \hfil
+                \usebeamerfont{author in head/foot}
+                \insertshortauthor
+                \hfil
+        \end{beamercolorbox}%
+        \begin{beamercolorbox}[wd = 0.34\paperwidth,
+                               ht = 2.25ex,
+                               dp = 1ex]
+                              {section in head/foot}
+
+                \hfil
+                \usebeamerfont{title in head/foot}
+                \insertshorttitle
+                \hfil
+        \end{beamercolorbox}%
+        \begin{beamercolorbox}[wd = 0.33\paperwidth,
+                               ht = 2.25ex,
+                               dp = 1ex]
+                              {section in head/foot}
+
+                \hfil
+                \usebeamerfont{date in head/foot}
+                \insertshortdate
+                \hspace*{2em}
+                \insertframenumber{} / \inserttotalframenumber
+                \hspace*{2ex}
+        \end{beamercolorbox}
+    }
+    \vskip0pt
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\logo
+{
+    \includegraphics[height = 0.1\paperheight]{UiB-images/UiB-emblem}
+}
+
+\newcommand{\nologo}{ \setbeamertemplate{logo}{} }
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%% Redefine blocks with larger indentations,
+%% and some environmental colours:
+\setbeamertemplate{block begin}
+{
+    \setbeamercolor{itemize item}  {fg = block title.bg}
+    \setbeamercolor{item projected}{fg = block title.fg,
+                                    bg = block title.bg}
+    \setbeamercolor{description item}{fg = alert}
+    \setbeamercolor{caption name}    {fg = alert}
+
+    \unskip
+    \vskip1.3ex
+
+    \begin{beamercolorbox}[ht        = 2.4  ex,
+                           dp        = 1    ex,
+                           leftskip  = 0.75 ex,
+                           rightskip = 0.75 ex]
+                          {block title}
+
+        \usebeamerfont*{block title}
+        \insertblocktitle
+    \end{beamercolorbox}
+
+    \nointerlineskip
+
+    \usebeamerfont{block body}
+    \begin{beamercolorbox}[dp        = 1    ex,
+                           leftskip  = 0.75 ex,
+                           rightskip = 0.75 ex,
+                           vmode]
+                          {block body}
+        \vspace*{1ex}
+        \begin{minipage}{\textwidth - 1.5ex}
+}
+
+\setbeamertemplate{block end}
+{
+        \end{minipage}
+    \vskip0pt
+    \end{beamercolorbox}
+    \vskip1.3ex
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\setbeamertemplate{block example begin}
+{
+    \setbeamercolor{itemize item}  {fg = block title example.bg}
+    \setbeamercolor{item projected}{fg = block title example.fg,
+                                    bg = block title example.bg}
+    \setbeamercolor{description item}{fg = alert}
+    \setbeamercolor{caption name}    {fg = alert}
+
+    \unskip
+    \vskip1.3ex
+
+    \begin{beamercolorbox}[ht        = 2.4  ex,
+                           dp        = 1    ex,
+                           leftskip  = 0.75 ex,
+                           rightskip = 0.75 ex]
+                          {block title example}
+
+        \usebeamerfont*{block title example}
+        \insertblocktitle
+    \end{beamercolorbox}
+
+    \nointerlineskip
+
+    \usebeamerfont{block body example}
+    \begin{beamercolorbox}[dp        = 1    ex,
+                           leftskip  = 0.75 ex,
+                           rightskip = 0.75 ex,
+                           vmode]
+                          {block body example}
+        \vspace*{1ex}
+        \begin{minipage}{\textwidth - 1.5ex}
+}
+
+\setbeamertemplate{block example end}
+{
+        \end{minipage}
+    \vskip0pt
+    \end{beamercolorbox}
+    \vskip1.3ex
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\setbeamertemplate{block alerted begin}
+{
+    \setbeamercolor{itemize item}  {fg = block title alerted.bg}
+    \setbeamercolor{item projected}{fg = block title alerted.fg,
+                                    bg = block title alerted.bg}
+    \setbeamercolor{description item}{fg = alert}
+    \setbeamercolor{caption name}    {fg = alert}
+
+    \unskip
+    \vskip1.3ex
+
+    \begin{beamercolorbox}[ht        = 2.4  ex,
+                           dp        = 1    ex,
+                           leftskip  = 0.75 ex,
+                           rightskip = 0.75 ex]
+                          {block title alerted}
+
+        \usebeamerfont*{block title alerted}
+        \insertblocktitle
+    \end{beamercolorbox}
+
+    \nointerlineskip
+
+    \usebeamerfont{block body alerted}
+    \begin{beamercolorbox}[dp        = 1    ex,
+                           leftskip  = 0.75 ex,
+                           rightskip = 0.75 ex,
+                           vmode]
+                          {block body alerted}
+        \vspace*{1ex}
+        \begin{minipage}{\textwidth - 1.5ex}
+}
+
+\setbeamertemplate{block alerted end}
+{
+        \end{minipage}
+    \vskip0pt
+    \end{beamercolorbox}
+    \vskip1.3ex
+
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\mode<all>
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%% Translate environment names to Norwegian:
+\uselanguage {\UiBlang}
+\languagepath{\UiBlang}
+
+\deftranslation[to = bm]{assumption} {antakelse}
+\deftranslation[to = bm]{Assumption} {Antakelse}
+\deftranslation[to = nn]{assumption} {f\o{}resetnad}
+\deftranslation[to = nn]{Assumption} {F\o{}resetnad}
+\deftranslation[to = bm]{axiom}      {aksiom}
+\deftranslation[to = bm]{Axiom}      {Aksiom}
+\deftranslation[to = nn]{axiom}      {aksiom}
+\deftranslation[to = nn]{Axiom}      {Aksiom}
+\deftranslation[to = bm]{calculation}{utregning}
+\deftranslation[to = bm]{Calculation}{Utregning}
+\deftranslation[to = nn]{calculation}{utrekning}
+\deftranslation[to = nn]{Calculation}{Utrekning}
+\deftranslation[to = bm]{computation}{beregning}
+\deftranslation[to = bm]{Computation}{Beregning}
+\deftranslation[to = nn]{computation}{berekning}
+\deftranslation[to = nn]{Computation}{Berekning}
+\deftranslation[to = bm]{conjecture} {formodning}
+\deftranslation[to = bm]{Conjecture} {Formodning}
+\deftranslation[to = nn]{conjecture} {forventing}
+\deftranslation[to = nn]{Conjecture} {Forventing}
+\deftranslation[to = bm]{corollary}  {korollar}
+\deftranslation[to = bm]{Corollary}  {Korollar}
+\deftranslation[to = nn]{corollary}  {korollar}
+\deftranslation[to = nn]{Corollary}  {Korollar}
+\deftranslation[to = bm]{definition} {definisjon}
+\deftranslation[to = bm]{Definition} {Definisjon}
+\deftranslation[to = nn]{definition} {definisjon}
+\deftranslation[to = nn]{Definition} {Definisjon}
+\deftranslation[to = bm]{definitions}{definisjoner}
+\deftranslation[to = bm]{Definitions}{Definisjoner}
+\deftranslation[to = nn]{definitions}{definisjonar}
+\deftranslation[to = nn]{Definitions}{Definisjonar}
+\deftranslation[to = bm]{example}    {eksempel}
+\deftranslation[to = bm]{Example}    {Eksempel}
+\deftranslation[to = nn]{example}    {d\o{}me}
+\deftranslation[to = nn]{Example}    {D\o{}me}
+\deftranslation[to = bm]{examples}   {eksempler}
+\deftranslation[to = bm]{Examples}   {Eksempler}
+\deftranslation[to = nn]{examples}   {d\o{}me}
+\deftranslation[to = nn]{Examples}   {D\o{}me}
+\deftranslation[to = bm]{fact}       {faktum}
+\deftranslation[to = bm]{Fact}       {Faktum}
+\deftranslation[to = nn]{fact}       {faktum}
+\deftranslation[to = nn]{Fact}       {Faktum}
+\deftranslation[to = bm]{facts}      {fakta}
+\deftranslation[to = bm]{Facts}      {Fakta}
+\deftranslation[to = nn]{facts}      {faktum}
+\deftranslation[to = nn]{Facts}      {Faktum}
+\deftranslation[to = bm]{hypothesis} {hypotese}
+\deftranslation[to = bm]{Hypothesis} {Hypotese}
+\deftranslation[to = nn]{hypothesis} {hypotese}
+\deftranslation[to = nn]{Hypothesis} {Hypotese}
+\deftranslation[to = bm]{notation}   {notasjon}
+\deftranslation[to = bm]{Notation}   {Notasjon}
+\deftranslation[to = nn]{notation}   {notasjon}
+\deftranslation[to = nn]{Notation}   {Notasjon}
+\deftranslation[to = bm]{observation}{observasjon}
+\deftranslation[to = bm]{Observation}{Observasjon}
+\deftranslation[to = nn]{observation}{observasjon}
+\deftranslation[to = nn]{Observation}{Observasjon}
+\deftranslation[to = bm]{property}   {egenskap}
+\deftranslation[to = bm]{Property}   {Egenskap}
+\deftranslation[to = nn]{property}   {eigenskap}
+\deftranslation[to = nn]{Property}   {Eigenskap}
+\deftranslation[to = bm]{proposition}{proposisjon}
+\deftranslation[to = bm]{Proposition}{Proposisjon}
+\deftranslation[to = nn]{proposition}{proposisjon}
+\deftranslation[to = nn]{Proposition}{Proposisjon}
+\deftranslation[to = bm]{remark}     {bemerkning}
+\deftranslation[to = bm]{Remark}     {Bemerkning}
+\deftranslation[to = nn]{remark}     {merknad}
+\deftranslation[to = nn]{Remark}     {Merknad}
+\deftranslation[to = bm]{remarks}    {bemerkninger}
+\deftranslation[to = bm]{Remarks}    {Bemerkninger}
+\deftranslation[to = nn]{remarks}    {merknadar}
+\deftranslation[to = nn]{Remarks}    {Merknadar}
+\deftranslation[to = bm]{theorem}    {teorem}
+\deftranslation[to = bm]{Theorem}    {Teorem}
+\deftranslation[to = nn]{theorem}    {teorem}
+\deftranslation[to = nn]{Theorem}    {Teorem}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%% Define additional theorem-like environments:
+\declaretheorem[style   = plain,
+                sibling = theorem,
+                name    = {\translate[to=\UiBlang]{Conjecture}}]
+                {conjecture}
+\declaretheorem[style   = plain,
+                sibling = theorem,
+                name    = {\translate[to=\UiBlang]{Facts}}]
+                {facts}
+\declaretheorem[style   = plain,
+                sibling = theorem,
+                name    = {\translate[to=\UiBlang]{Hypothesis}}]
+                {hypothesis}
+\declaretheorem[style   = plain,
+                sibling = theorem,
+                name    = {\translate[to=\UiBlang]{Observation}}]
+                {observation}
+\declaretheorem[style   = plain,
+                sibling = theorem,
+                name    = {\translate[to=\UiBlang]{Proposition}}]
+                {proposition}
+\declaretheorem[style = definition,
+                name  = {\translate[to=\UiBlang]{Assumption}}]
+                {assumption}
+\declaretheorem[style = definition,
+                name  = {\translate[to=\UiBlang]{Axiom}}]
+                {axiom}
+\declaretheorem[style = definition,
+                name  = {\translate[to=\UiBlang]{Property}}]
+                {property}
+\declaretheorem[style    = definition,
+                numbered = no,
+                name     = {\translate[to=\UiBlang]{Calculation}}]
+                {calculation}
+\declaretheorem[style    = definition,
+                numbered = no,
+                name     = {\translate[to=\UiBlang]{Computation}}]
+                {computation}
+\declaretheorem[style   = definition,
+                sibling = theorem,
+                name    = {\translate[to=\UiBlang]{Notation}}]
+                {notation}
+\declaretheorem[style = remark,
+                name  = {\translate[to=\UiBlang]{Remark}}]
+                {remark}
+\declaretheorem[style   = remark,
+                sibling = remark,
+                name    = {\translate[to=\UiBlang]{Remarks}}]
+                {remarks}
+
+
+\endinput
