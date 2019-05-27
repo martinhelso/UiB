@@ -30,8 +30,8 @@ are given, the environments listed below are translated into the specified langu
 ## Emblem
 The emblem in the lower right corner can be removed from a specific `frame` using the macro `\nologo` like this:
 ```LaTeX
-\nologo
 {
+    \nologo
     \begin{frame}
         ...
     \end{frame}
