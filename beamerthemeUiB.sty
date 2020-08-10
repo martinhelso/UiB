@@ -1,9 +1,9 @@
-% Theme for The University of Bergen
+% Theme for the University of Bergen
 % Implemented by Martin Helsø (martibhe@math.uio.no)
-% Version 08-01-2020
+% Version 10-08-2020
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 \RequirePackage{calc}
@@ -18,7 +18,7 @@
             citecolor =}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 %% Standard headers:
@@ -79,18 +79,24 @@
     \def \UiBfont {default}
     \setbool{neohellenic}{true}
     \setbool{latinmodern}{false}
+    \AtBeginDocument{\sbox0{\(\mathsf{\xdef\mathsfgroup{\the\mathgroup}}\)}}
+    \def\operator@font{\mathgroup\mathsfgroup}
 }
-\DeclareOptionBeamer{MathSerif}
+\DeclareOptionBeamer{UiBSerif}
 {
     \def \UiBfont {professionalfonts}
     \setbool{neohellenic}{false}
     \setbool{latinmodern}{false}
+    \AtBeginDocument{\sbox0{\(\mathrm{\xdef\mathrmgroup{\the\mathgroup}}\)}}
+    \def\operator@font{\mathgroup\mathrmgroup}
 }
 \DeclareOptionBeamer{Serif}
 {
     \def \UiBfont {serif}
     \setbool{neohellenic}{false}
     \setbool{latinmodern}{true}
+    \AtBeginDocument{\sbox0{\(\mathrm{\xdef\mathrmgroup{\the\mathgroup}}\)}}
+    \def\operator@font{\mathgroup\mathrmgroup}
 }
 
 
@@ -119,7 +125,37 @@
 % the standard Computer Modern.
 \ifbool{neohellenic}
 {
-    \RequirePackage[default]{gfsneohellenic}
+    \DeclareSymbolFont{neomath}{OML}{neohellenic}{m}{n}
+    \DeclareMathSymbol{\alpha}\mathord{neomath}{"0B}
+    \DeclareMathSymbol{\beta}\mathord{neomath}{"0C}
+    \DeclareMathSymbol{\gamma}\mathord{neomath}{"0D}
+    \DeclareMathSymbol{\delta}\mathord{neomath}{"0E}
+    \DeclareMathSymbol{\epsilon}\mathord{neomath}{"0F}
+    \DeclareMathSymbol{\zeta}\mathord{neomath}{"10}
+    \DeclareMathSymbol{\eta}\mathord{neomath}{"11}
+    \DeclareMathSymbol{\theta}\mathord{neomath}{"12}
+    \DeclareMathSymbol{\theta}\mathord{neomath}{"12}
+    \DeclareMathSymbol{\iota}\mathord{neomath}{"13}
+    \DeclareMathSymbol{\kappa}\mathord{neomath}{"14}
+    \DeclareMathSymbol{\lambda}\mathord{neomath}{"15}
+    \DeclareMathSymbol{\mu}\mathord{neomath}{"16}
+    \DeclareMathSymbol{\nu}\mathord{neomath}{"17}
+    \DeclareMathSymbol{\xi}\mathord{neomath}{"18}
+    \DeclareMathSymbol{\pi}\mathord{neomath}{"19}
+    \DeclareMathSymbol{\rho}\mathord{neomath}{"1A}
+    \DeclareMathSymbol{\sigma}\mathord{neomath}{"1B}
+    \DeclareMathSymbol{\tau}\mathord{neomath}{"1C}
+    \DeclareMathSymbol{\upsilon}\mathord{neomath}{"1D}
+    \DeclareMathSymbol{\phi}\mathord{neomath}{"1E}
+    \DeclareMathSymbol{\chi}\mathord{neomath}{"1F}
+    \DeclareMathSymbol{\psi}\mathord{neomath}{"20}
+    \DeclareMathSymbol{\omega}\mathord{neomath}{"21}
+    \DeclareMathSymbol{\varepsilon}\mathord{neomath}{"22}
+    \DeclareMathSymbol{\vartheta}\mathord{neomath}{"23}
+    \DeclareMathSymbol{\varpi}\mathord{neomath}{"24}
+    \DeclareMathSymbol{\varrho}\mathord{neomath}{"25}
+    \DeclareMathSymbol{\varsigma}\mathord{neomath}{"26}
+    \DeclareMathSymbol{\varphi}\mathord{neomath}{"27}
 }
 {}
 
@@ -139,7 +175,7 @@
 \setlength{\emergencystretch}{3em}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 %% Official colours:
@@ -150,7 +186,7 @@
 \definecolor{uiblink} {HTML}{00769E}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 \mode<presentation>
@@ -169,6 +205,7 @@
 
 
 %% Standard colours:
+\colorlet{alert}{uibblue}
 \setbeamercolor{structure}{fg = uibred}
 \setbeamercolor{block title}{fg = white,
                              bg = uibred}
@@ -188,10 +225,7 @@
 
 
 %% Custom colours:
-\setbeamercolor{author in final frame}  {fg = white}
-\setbeamercolor{title in final frame}   {fg = white}
-\setbeamercolor{subtitle in final frame}{fg = white}
-
+\setbeamercolor*{section page}{fg = white, bg = structure}
 
 %% Standard fonts:
 \setbeamerfont{author}    {size   = \huge,
@@ -209,15 +243,10 @@
 
 
 %% Custom fonts:
-\setbeamerfont{author in final frame}  {size   = \LARGE,
-                                        series = \bfseries}
-\setbeamerfont{title in final frame}   {size   = \LARGE,
-                                        series = \bfseries}
-\setbeamerfont{subtitle in final frame}{  size = \Large,
-                                        series = \normalfont\rmfamily}
+\setbeamerfont*{section page}{size   = \Huge,
+                              series = \bfseries}
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 \setbeamertemplate{title page}
@@ -257,7 +286,7 @@
 }}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 \setbeamertemplate{frametitle}
@@ -270,13 +299,13 @@
 }
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 \setbeamertemplate{headline}{ \vspace*{1.7 mm} }
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 \setbeamertemplate{footline}
@@ -320,7 +349,7 @@
 }
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 \logo
@@ -331,14 +360,16 @@
 \newcommand{\nologo}{ \setbeamertemplate{logo}{} }
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 %% Redefine blocks with larger indentations,
 %% and some environmental colours:
 \setbeamertemplate{block begin}
 {
-    \setbeamercolor{itemize item}  {fg = block title.bg}
+    \setbeamercolor{itemize item}      {fg = block title.bg}
+    \setbeamercolor{itemize subitem}   {fg = block title.bg}
+    \setbeamercolor{itemize subsubitem}{fg = block title.bg}
     \setbeamercolor{item projected}{fg = block title.fg,
                                     bg = block title.bg}
     \setbeamercolor{description item}{fg = alert}
@@ -378,12 +409,14 @@
 }
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 \setbeamertemplate{block example begin}
 {
-    \setbeamercolor{itemize item}  {fg = block title example.bg}
+    \setbeamercolor{itemize item}      {fg = block title example.bg}
+    \setbeamercolor{itemize subitem}   {fg = block title example.bg}
+    \setbeamercolor{itemize subsubitem}{fg = block title example.bg}
     \setbeamercolor{item projected}{fg = block title example.fg,
                                     bg = block title example.bg}
     \setbeamercolor{description item}{fg = alert}
@@ -423,12 +456,14 @@
 }
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 \setbeamertemplate{block alerted begin}
 {
-    \setbeamercolor{itemize item}  {fg = block title alerted.bg}
+    \setbeamercolor{itemize item}      {fg = block title alerted.bg}
+    \setbeamercolor{itemize subitem}   {fg = block title alerted.bg}
+    \setbeamercolor{itemize subsubitem}{fg = block title alerted.bg}
     \setbeamercolor{item projected}{fg = block title alerted.fg,
                                     bg = block title alerted.bg}
     \setbeamercolor{description item}{fg = alert}
@@ -469,13 +504,46 @@
 }
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%% Reference enumerate items
+\newcommand{\enumref}[1]
+{{%
+    \leavevmode\unskip
+    \def\insertenumlabel{\ref{#1}}
+    \usebeamertemplate*{enumerate item}%
+}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\setbeamertemplate{section page}
+{
+    \begin{center}
+        \vskip\baselineskip
+        \insertsection
+    \end{center}
+}
+
+\newcommand{\SectionPage}
+{{
+    \setbeamercolor{background canvas}{parent = section page}
+    \begin{frame}[c, plain, noframenumbering]
+        \sectionpage
+    \end{frame}
+}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 \mode<all>
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 %% Translate environment names to Norwegian:
@@ -564,7 +632,7 @@
 \deftranslation[to = nn]{Theorem}    {Teorem}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 %% Define additional theorem-like environments:
