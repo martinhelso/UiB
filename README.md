@@ -16,7 +16,7 @@ using the macro `\hidelogo` outside of the `frame` like this:
 ```
 Use `\showlogo` in the same manner to make the logo appear again. 
 
-## Section Page
+## Section page
 The command `\SectionPage` inserts a `[NoFrameNumbering, plain]` frame
 with red background issuing the `\sectionpage` command.
 The command `\SectionPage` is used outside of a `frame`,
