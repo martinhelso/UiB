@@ -1,6 +1,6 @@
 % Theme for the University of Bergen
 % Implemented by Martin Helsø (martibhe@math.uio.no)
-% Version 10-08-2020
+% Version 27-08-2020
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -351,13 +351,15 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
-\logo
+\newcommand{\hidelogo}{\logo{}}
+\newcommand{\showlogo}
 {
-    \includegraphics[height = 0.1\paperheight]{UiB-images/UiB-emblem}
+    \logo
+    {
+        \includegraphics[height = 0.1\paperheight]{UiB-images/UiB-emblem}
+    }
 }
-
-\newcommand{\nologo}{ \setbeamertemplate{logo}{} }
+\showlogo
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
